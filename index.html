@@ -1462,14 +1462,14 @@ src="https://www.facebook.com/tr?id=974617600838066&ev=PageView&noscript=1"
 
 <script>
 (function() {
-  // Set deadline: 2 days, 23h, 59m, 34s from first visit (stored in localStorage)
-  var key = 'fnp_deadline';
+  // Set deadline: 3 days from first visit (stored in localStorage)
+  var key = 'fnp_deadline_v2';
   var deadline;
   try {
     deadline = parseInt(localStorage.getItem(key));
   } catch(e) {}
-  if (!deadline || isNaN(deadline)) {
-    deadline = Date.now() + (2*86400 + 23*3600 + 59*60 + 34) * 1000;
+  if (!deadline || isNaN(deadline) || deadline < Date.now()) {
+    deadline = Date.now() + (3*86400) * 1000;
     try { localStorage.setItem(key, deadline); } catch(e) {}
   }
   function pad(n) { return n < 10 ? '0'+n : ''+n; }
